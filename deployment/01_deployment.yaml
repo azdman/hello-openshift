@@ -16,6 +16,12 @@ spec:
       - name: hello-openshift
         image: 172.30.1.1:5000/training05/hello-openshift:build-1
         imagePullPolicy: Always
+        env:
+        - name: TOP_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: hello-openshift-secret
+              key: topsecret
         volumeMounts:
         - name: config-volume
           mountPath: /tmp/config-data
